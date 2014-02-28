@@ -18,7 +18,7 @@
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="UpdateApp">
 				<param name="android-package" value="com.zybx.xiaofu.UpdateApp" />
-			</feature>
+	    </feature>
         </config-file> 
         <source-file src="src/UpdateApp.java" target-dir="src/com/zybx/xiaofu" />      
      </platform>          
