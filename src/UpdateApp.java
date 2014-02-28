@@ -1,4 +1,4 @@
-package com.jingle;
+package com.zybx.xiaofu;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,8 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.apache.cordova.api.CallbackContext;
-import org.apache.cordova.api.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +32,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.apusic.acp.R;
+import com.phonegap.hello_world.R;
 
 public class UpdateApp extends CordovaPlugin {
 	
@@ -59,7 +59,7 @@ public class UpdateApp extends CordovaPlugin {
     /* 更新进度条 */
     private ProgressBar mProgress;
     private Dialog mDownloadDialog;
-	
+/*	
 	@Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         this.mContext = cordova.getActivity();
@@ -87,9 +87,33 @@ public class UpdateApp extends CordovaPlugin {
         }
         return false;
     }
-	
+*/	
+    @Override
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        this.mContext = cordova.getActivity();
+		if (action.equals("checkAndUpdate")) {
+			this.checkPath = args.getString(0);
 
-    
+        	checkAndUpdate();
+        	callbackContext.success();
+        	return true;
+		}
+		return false;
+        /*	
+			if(this.getServerVerInfo()){
+        		//优化 缩短传输内容，减少流量
+        		JSONObject obj = new JSONObject();
+            	obj.put("serverVersionCode", newVerCode);
+            	obj.put("serverVersionName", newVerName);
+        		callbackContext.success(newVerCode+"");
+        	}else{
+        		callbackContext.error("can't connect to the server:" +this.checkPath);
+        	}
+			return true;
+        }
+		return false;
+		*/
+    }
     /**
      * 检查更新
      */
@@ -165,9 +189,8 @@ public class UpdateApp extends CordovaPlugin {
 			}
 			reader.close();
 			
-			JSONArray array = new JSONArray(verInfoStr.toString());
-			if(array.length()>0){
-				JSONObject obj = array.getJSONObject(0);
+			if(verInfoStr.length()>0){
+				JSONObject obj = new JSONObject(verInfoStr.toString());				
 				newVerCode = obj.getInt("verCode");
 				newVerName = obj.getString("verName");
 				downloadPath = obj.getString("apkPath");
