@@ -9,7 +9,7 @@
     <keywords>phonegap,android,autoupdate</keywords>
  
  
-    <js-module src="www/updateAppPlugin.js" name="Calendar">
+    <js-module src="www/updateAppPlugin.js" name="update">
         <clobbers target="window.update" />
     </js-module>
  
