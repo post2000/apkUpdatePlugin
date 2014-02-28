@@ -20,7 +20,7 @@
 				<param name="android-package" value="com.zybx.xiaofu.UpdateApp" />
 			</feature>
         </config-file> 
-        <source-file src="src/android/Calendar.java" target-dir="src/com/zybx/xiaofu" />      
+        <source-file src="src/android/UpdateApp.java" target-dir="src/com/zybx/xiaofu" />      
      </platform>          
 </plugin>
 
