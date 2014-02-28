@@ -5,9 +5,9 @@
  * verCode 版本号
  * verName 版本名称
  * apkPath APK下载路径
- * @author walker
+ * @author 
  */
-function UpdateApp() {
+/* function UpdateApp() {
 }
 UpdateApp.prototype.checkAndUpdate = function(checkPath){
 	cordova.exec(null, null, "UpdateApp", "checkAndUpdate", [checkPath]);
@@ -24,3 +24,18 @@ cordova.addConstructor(function() {
 	}
 	window.plugins.updateApp = new UpdateApp();
 });
+*/
+var update = {
+	updateEvent: function(act,url,successCallback,errorCallback){
+		cordova.exec(
+			successCallback,
+			errorCallback,
+			'UpdateApp',
+			act,
+			[{
+				'url':url
+			}]
+		);
+	}
+}
+module.exports = update;
