@@ -7,34 +7,15 @@
  * apkPath APK下载路径
  * @author 
  */
-/* function UpdateApp() {
-}
-UpdateApp.prototype.checkAndUpdate = function(checkPath){
-	cordova.exec(null, null, "UpdateApp", "checkAndUpdate", [checkPath]);
-}
-UpdateApp.prototype.getCurrentVerInfo = function(successCallback){
-	cordova.exec(successCallback, null, "UpdateApp", "getCurrentVersion", []);
-}
-UpdateApp.prototype.getServerVerInfo = function(successCallback,failureCallback,checkPath){
-	cordova.exec(successCallback, failureCallback, "UpdateApp", "getServerVersion", [checkPath]);
-}
-cordova.addConstructor(function() {
-	if (!window.plugins) {
-		window.plugins = {};
-	}
-	window.plugins.updateApp = new UpdateApp();
-});
-*/
+
 var update = {
-	updateEvent: function(act,url,successCallback,errorCallback){
+	updateEvent: function(url,successCallback,errorCallback){
 		cordova.exec(
 			successCallback,
 			errorCallback,
 			'UpdateApp',
-			act,
-			[{
-				'url':url
-			}]
+			'checkAndUpdate',
+			[url]
 		);
 	}
 }
